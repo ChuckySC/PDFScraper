@@ -1,16 +1,8 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Chucky SC">
-        <meta name="generator" content="PDF scraper">
-        <title>PDF scraper</title>
-    </head>
-    <body>
-        <!-- https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application -->
-        <h3>{{ utc_dt }}</h3>
-        <p>I'm alive. Move on...</p>
-    </body>
-</html>
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Index {% endblock %}</h1>
+    <h1>Hello World!</h1>
+    <h2>Welcome to FlaskApp!</h2>
+    <h3>{{ utc_dt }}</h3>
+{% endblock %}
