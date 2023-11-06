@@ -6,11 +6,17 @@
             <meta name="description" content="">
             <meta name="author" content="Chucky SC">
             <meta name="generator" content="PDF scraper">
-            <title>PDF scraper - {% block title %} {% endblock %}</title>
+            <title>PDF scraper</title>
+
+            {% include "components/layouts/top-scripts.html" %}
     </head>
     <body>
-        <div class="content">
+        {% include "components/navigation.html" %}
+
+        <div class="main-content">
             {% block content %} {% endblock %}
         </div>
+
+        {% include "components/layouts/bottom-scripts.html" %}
     </body>
 </html>
