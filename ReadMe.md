@@ -3,6 +3,15 @@
 * *Install Visual Studio Code:*    https://code.visualstudio.com/
 * *Install Extension:*   Python Extension Pack
 * *Install Python:*   https://code.visualstudio.com/docs/python/python-tutorial or from  MicrosoftStore
+* *Use poppler for converting pdf into xml*, with command:
+  `pdftohtml -xml -i file.pdf file.xml`
+
+  Option -xml forms xml page
+  Option -i ignores the images
+
+  Additional options:
+  -f xxx from what page you want to start
+  -l xxx what page you want it to be the last one
 
 # Initial set up
 
