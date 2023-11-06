@@ -46,11 +46,17 @@ def upload_file():
         file_name = request.args['name']
         file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
         data = file_data.split('\n')
+        return render_template('render_file.html', context={'data': data})
+        
+        # import xml.etree.ElementTree as ET
+        # tree = ET.parse(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        # root = tree.getroot()
+        # return render_template('render_file.html', context={'root': root})
+        
         # TODO add template that will have one side as xml and on right side a form for adding paramethers for collecting data from xml and structuring them into json
     except Exception as e:
         # logger for errors
-        abort(500)
-    
+        abort(500)  
 
 @app.route('/about')
 def about():
