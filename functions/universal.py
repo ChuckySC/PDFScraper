@@ -6,6 +6,7 @@ def savejson(data, file):
         json.dump(data, output)
         
 def loadjson(file):
+    '''Load json data'''
     with open(file) as input:
         data = json.load(input)
     return data
