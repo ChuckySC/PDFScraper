@@ -1,20 +1,273 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
+    <div class="container p-3 mb-2">
+
+        <input type="hidden" id="max-rows" value="{{context.max_rows}}"/>
+
+        <div class="row justify-content-start">
+            <div class="col-6">
                 <!--Left column-->
                 {% for line in context.data %}
-                    {{ line }}</br>
+                    <span>{{ line }}</span></br>
                 {% endfor %}
             </div>
-            <div class="col">
+            <div class="col-6">
                 <!--Right column-->
                 <form method="post" enctype="multipart/form-data">
                     <!--FORM WITH CLIENT INPUT PARAMETERS-->
+                    <div id="input-group-skip">
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Skip Line</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-skip" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="skip-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="skip-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="skip-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-title-start">
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Title Start</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-title-start" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="title-start-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="title-start-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="title-start-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-title">
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Title</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-title" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="title-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="title-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="title-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-content-start">
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Content Start</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-content-start" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="content-start-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="content-start-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="content-start-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-content">
+                        <div class="row g-3 pb-3 d-flex align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Content</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-content" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="content-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="content-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="content-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-author-start">
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Author(s) Start</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-author-start" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="author-start-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="author-start-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="author-start-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="input-group-author">
+                        <div class="row g-3 pb-3 d-flex align-items-center">
+                            <div class="col-6">
+                                <span class="input-group-text">Author(s)</span>
+                            </div>
+                            <div class="col-6">
+                                <input type="button" id="new-author" class="btn btn-secondary" style="float: right;" value="Add New Row"/>
+                            </div>
+                        </div>
+                        <div class="row g-3 pb-3 align-items-center">
+                            <div class="input-group">
+                                <input type="text" name="author-font-0" aria-label="font" placeholder="font" class="form-control"/>
+                                <input type="text" name="author-height-0" aria-label="height" placeholder="height" class="form-control"/>
+                                <input type="text" name="author-width-0" aria-label="width" placeholder="width" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-success" style="float: right;" value="Get Structured Data"/>
                 </from>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            const input_obj = `
+                <div class="row g-3 pb-3 align-items-center">
+                    <div class="input-group">
+                        <input type="text" name="NAME-FONT" aria-label="font" placeholder="font" class="form-control"/>
+                        <input type="text" name="NAME-HEIGHT" aria-label="height" placeholder="height" class="form-control"/>
+                        <input type="text" name="NAME-WIDTH" aria-label="width" placeholder="width" class="form-control"/>
+                    </div>
+                </div>
+            `;
+            const max_rows = $('#max-rows').val();
+            //console.log(max_rows);
+
+            /* --------------------- */
+            /* ----- LISTENERS ----- */
+            /* --------------------- */
+            $('input#new-skip').bind('click', function() {
+                let skip_count = $('#input-group-skip .input-group').length;
+                $('div#input-group-skip').append(
+                    input_obj
+                        .replace('NAME-FONT', `skip-font-${skip_count}`)
+                        .replace('NAME-HEIGHT', `skip-height-${skip_count}`)
+                        .replace('NAME-WIDTH', `skip-width-${skip_count}`)
+                );
+
+                if (skip_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-title-start').bind('click', function() {
+                let title_start_count = $('#input-group-title-start .input-group').length;
+                $('div#input-group-title-start').append(
+                    input_obj
+                        .replace('NAME-FONT', `title-start-font-${title_start_count}`)
+                        .replace('NAME-HEIGHT', `title-start-height-${title_start_count}`)
+                        .replace('NAME-WIDTH', `title-start-width-${title_start_count}`)
+                );
+
+                if (title_start_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-title').bind('click', function() {
+                let title_count = $('#input-group-title .input-group').length;
+                $('div#input-group-title').append(
+                    input_obj
+                        .replace('NAME-FONT', `title-font-${title_count}`)
+                        .replace('NAME-HEIGHT', `title-height-${title_count}`)
+                        .replace('NAME-WIDTH', `title-width-${title_count}`)
+                );
+
+                if (title_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-content-start').bind('click', function() {
+                let content_start_count = $('#input-group-content-start .input-group').length;
+                $('div#input-group-content-start').append(
+                    input_obj
+                        .replace('NAME-FONT', `content-start-font-${content_start_count}`)
+                        .replace('NAME-HEIGHT', `content-start-height-${content_start_count}`)
+                        .replace('NAME-WIDTH', `content-start-width-${content_start_count}`)
+                );
+
+                if (content_start_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-content').bind('click', function() {
+                let content_count = $('#input-group-content .input-group').length;
+                $('div#input-group-content').append(
+                    input_obj
+                        .replace('NAME-FONT', `content-font-${content_count}`)
+                        .replace('NAME-HEIGHT', `content-height-${content_count}`)
+                        .replace('NAME-WIDTH', `content-width-${content_count}`)
+                );
+
+                if (content_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-author-start').bind('click', function() {
+                let author_start_count = $('#input-group-author-start .input-group').length;
+                $('div#input-group-author-start').append(
+                    input_obj
+                        .replace('NAME-FONT', `author-start-font-${author_start_count}`)
+                        .replace('NAME-HEIGHT', `author-start-height-${author_start_count}`)
+                        .replace('NAME-WIDTH', `author-start-width-${author_start_count}`)
+                );
+
+                if (author_start_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+
+            $('input#new-author').bind('click', function() {
+                let author_count = $('#input-group-author .input-group').length;
+                $('div#input-group-author').append(
+                    input_obj
+                        .replace('NAME-FONT', `author-font-${author_count}`)
+                        .replace('NAME-HEIGHT', `author-height-${author_count}`)
+                        .replace('NAME-WIDTH', `author-width-${author_count}`)
+                );
+
+                if (author_count == max_rows) {
+                    // disable add button when we reached 3 rows
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+        });
+      </script>
 {% endblock %}

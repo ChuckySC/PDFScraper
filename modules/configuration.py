@@ -18,12 +18,12 @@ class Configuration:
     logger = None
     
     description = None
-    skip_line = None
-    start_title = None
+    skip = None
+    title_start = None
     title = None
-    start_body = None
-    body = None
-    start_author = None
+    content_start = None
+    content = None
+    author_start = None
     author = None
     
     def __init__(self, id:int = None):
@@ -41,10 +41,10 @@ class Configuration:
     
     def loaddata(self, environment):
         self.description = environment['description']
-        self.skip_line = environment['skip_line']
-        self.start_title = environment['start_title']
+        self.skip = environment['skip']
+        self.title_start = environment['title-start']
         self.title = environment['title']
-        self.start_body = environment['start_body']
-        self.body = environment['body']
-        self.start_author = environment['start_author']
+        self.content_start = environment['content-start']
+        self.content = environment['content']
+        self.author_start = environment['author-start']
         self.author = environment['author']

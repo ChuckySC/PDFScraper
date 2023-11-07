@@ -9,6 +9,18 @@ from functions.universal import allowed_file, load_xml
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'xml'}
 
+MAX_ROWS = 2
+PARAMETERS = ['font', 'height', 'width']
+BASE = {
+    "skip": [],
+    "title-start": [],
+    "title": [],
+    "content-start": [],
+    "content": [],
+    "author": [],
+    "author-start": []
+}
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -47,17 +59,39 @@ def index():
 @app.route('/upload_file', methods=['GET','POST'])
 def upload_file():
     try:
-        file_name = request.args['name']
-        file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        data = file_data.split('\n')
-        return render_template('render_file.html', context={'data': data})
-        
-        # import xml.etree.ElementTree as ET
-        # tree = ET.parse(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        # root = tree.getroot()
-        # return render_template('render_file.html', context={'root': root})
-        
-        # TODO add template that will have one side as xml and on right side a form for adding paramethers for collecting data from xml and structuring them into json
+        if request.method == 'GET':
+            file_name = request.args['name']
+            file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+            data = file_data.split('\n')
+            return render_template(
+                'render_file.html', 
+                context={
+                    'type': 'upload',
+                    'data': data, 
+                    'max_rows': MAX_ROWS
+                }
+            )
+        else: # request.method == 'POST'
+            #TODO test and continue
+            for key in BASE.keys():
+                for i in range(MAX_ROWS):
+                    fhw = {}
+                    for parametar in PARAMETERS:
+                        name = f'{key}-{parametar}{i}'
+                        if name in request.form: 
+                            fhw[parametar] = request.form[name]
+                        else:
+                            fhw[parametar] = None
+                    BASE[key].append(fhw)
+                    
+            return render_template(
+                'render_file.html', 
+                context={
+                    'type': 'download',
+                    'data': data,
+                    'max_rows': MAX_ROWS
+                }
+            )
     except Exception as e:
         # logger for errors
         abort(500)  
