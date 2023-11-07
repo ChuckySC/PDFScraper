@@ -1,0 +1,20 @@
+{% extends 'components/layouts/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!--Left column-->
+                {% for line in context.data %}
+                    {{ line }}</br>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <!--Right column-->
+                <form method="post" enctype="multipart/form-data">
+                    <!--FORM WITH CLIENT INPUT PARAMETERS-->
+                </from>
+            </div>
+        </div>
+    </div>
+{% endblock %}

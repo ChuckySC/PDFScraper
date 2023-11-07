@@ -1,8 +1,20 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="file"/>
-    <input type="submit" value="Upload"/>
-</form>
+    <div class="p-3 mb-2">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="xmlfile" class="col-form-label"><strong>Browse XML file</strong></label>
+                </div>
+                <div class="col-auto">
+                    <input type="file" id="xmlfile" name="file" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-secondary" value="Upload file"/>
+                </div>
+                
+            </div>
+        </form>
+    </div>
 {% endblock %}
