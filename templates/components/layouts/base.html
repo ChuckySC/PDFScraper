@@ -10,12 +10,14 @@
 
             {% include "components/layouts/top-scripts.html" %}
     </head>
-    <body>
-        {% include "components/navigation.html" %}
+    <body class="d-flex flex-column min-vh-100">
+        {% include "components/layouts/header.html" %}
 
         <div class="main-content">
             {% block content %} {% endblock %}
         </div>
+
+        {% include "components/layouts/footer.html" %}
 
         {% include "components/layouts/bottom-scripts.html" %}
     </body>

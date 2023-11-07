@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
-import datetime
+from datetime import datetime
 import os
 
 from functions.universal import allowed_file, load_xml
@@ -11,6 +11,10 @@ ALLOWED_EXTENSIONS = {'xml'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.context_processor
+def inject_now():
+    return {'current_year': datetime.utcnow().year}
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -33,7 +37,7 @@ def index():
                 return redirect(url_for('upload_file', name=file_name))
 
         context = {
-            'date': datetime.datetime.utcnow().date()
+            'date': datetime.utcnow().date()
         }
         return render_template('index.html', context=context)
     except Exception as e:
@@ -62,7 +66,7 @@ def upload_file():
 def about():
     try:
         context = {
-            'date': datetime.datetime.utcnow().date()
+            'date': datetime.utcnow().date()
         }
         return render_template('about.html', context=context)
     except Exception as e:
