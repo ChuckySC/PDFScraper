@@ -61,9 +61,9 @@ def index():
 def upload_file():
     try:
         file_name = request.args['name']
+        file_data = load_xml_as_str(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
 
         if request.method == 'GET':
-            file_data = load_xml_as_str(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
             return render_template(
                 'render_file.html', 
                 context={
@@ -73,7 +73,6 @@ def upload_file():
             )
 
         elif request.method == 'POST':
-            file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
             return render_template(
                 'uploaded_file.html', 
                 context={
