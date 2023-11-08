@@ -20,29 +20,30 @@ def extract_from(line):
 
     return clean(txt_line), font, height, width
 
-def skip(line: str, font: int, height: int, width: int, mapping: list) -> bool:
-    results = []
+def is_true(line: str, font: int, height: int, width: int, mapping: list) -> bool:
     for el in mapping:
         if bool(el['font'] is None or el['font'] == font) and \
             bool(el['height'] is None or el['height'] == height) and \
                 bool(el['width'] is None or el['width'] == width) and \
                     bool(el['line'] is None or el['line'] == line):
-                        results.append(True)
-        else:
-            results.append(False)
+                        return True
 
-    return all(results)
+    return False
 
-def xml_extract(mapping: dict, file_path: str) -> dict:
+def xml_extract(mapping: dict, file_path: str) -> list:
+    abstracts = []
+    abs = None
+    
     abs_title = ''
     abs_content = ''
     abs_author = ''
     abs_page = ''
+    
+    # is_title_started = False
+    is_author_started = False
+    is_abs_started = False
 
     root = load_xml(file_path)
-
-    # first abstract
-    #abstract = Abstract()
     
     for page in root.findall('page'):
         page_num = page.attrib['number']
@@ -50,7 +51,56 @@ def xml_extract(mapping: dict, file_path: str) -> dict:
         for line in page.findall('text'):
             txt_line, font, height, width = extract_from(line)
             
-            if skip(txt_line, font, height, width, mapping['skip']):
+            if is_true(txt_line, font, height, width, mapping['skip']):
                 continue
             
-    return
+            # ABS TITLE
+            if is_true(txt_line, font, height, width, mapping['title']):
+                if abs_title == '':
+                    abs_page = page_num
+                abs_title = f'{abs_title}{txt_line}'.strip() if abs_title != ''  else txt_line.strip()
+                is_author_started = True
+                is_abs_started = True
+                continue
+            
+            # ABS AUTHOR(S)
+            if is_true(txt_line, font, height, width, mapping['author']) and is_author_started:
+                abs_author = f'{abs_author} {txt_line}'.strip() if abs_author != ''  else txt_line.strip()
+                # is_title_started = False
+                continue
+            
+            # NEW ABS STARTS
+            if is_true(txt_line, font, height, width, mapping['content']) and is_abs_started:
+                # is_title_started = False
+                is_author_started = False
+                
+                if abs:
+                    abs.content = abs_content
+                    abstracts.append(abs.get()) # previous abstract
+                    
+                # Call class constructor    
+                abs = Abstract(
+                    title=abs_title,
+                    author=abs_author,
+                    page=abs_page
+                )
+                
+                # Clear variables
+                abs_title = ''
+                abs_content = ''
+                abs_author = ''
+                abs_page = ''
+
+                abs_content = txt_line.strip()
+                continue
+            
+            # ELSE abs content
+            if is_abs_started:
+                abs_content = f"{abs_content} {txt_line}".strip()
+
+    # add last abstract
+    if abs:
+        abs.content = abs_content
+        abstracts.append(abs.get())   
+     
+    return abstracts

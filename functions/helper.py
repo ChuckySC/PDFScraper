@@ -27,6 +27,6 @@ def get_structural_data(
     max_rows: int, 
     request_form,
     file_path: str
-):
+) -> list:
     mapping = get_mapping(base, parameters, max_rows, request_form)
     return xml_extract(mapping, file_path)

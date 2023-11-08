@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 
-from functions.universal import allowed_file, load_xml_as_str
+from functions.universal import allowed_file, load_xml_as_str, load_xml
 from functions.helper import get_structural_data
 
 
@@ -67,26 +67,24 @@ def upload_file():
             return render_template(
                 'render_file.html', 
                 context={
-                    'type': 'upload',
-                    'file_name': file_name,
                     'data': file_data.split('\n'), 
                     'max_rows': MAX_ROWS
                 }
             )
 
         elif request.method == 'POST':
+            file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
             return render_template(
-                'render_file.html', 
+                'uploaded_file.html', 
                 context={
-                    'type': 'download',
-                    'data': get_structural_data(
+                    'data': file_data,
+                    'structural_data': get_structural_data(
                         BASE,
                         PARAMETERS,
                         MAX_ROWS,
                         request.form,
                         os.path.join(app.config['UPLOAD_FOLDER'], file_name)
-                    ),
-                    'max_rows': MAX_ROWS
+                    )
                 }
             )
 
