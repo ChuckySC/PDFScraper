@@ -1,2 +1,2 @@
 class Constants:
-    project_name = "PDF scraper"
+    project_name = "XML scraper"

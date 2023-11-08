@@ -1,83 +1,14 @@
 {
     "local": {
-        "description": "configuration file for python scripts",
-        "skip": [
-            {
-                "font": 2,
-                "height": 14,
-                "width": null
-            }
-        ],
-        "title-start": [
-            {
-                "font": 1,
-                "height": 23,
-                "width": null
-            }
-        ],
-        "title": [
-            {
-                "font": 1,
-                "height": 23,
-                "width": null
-            }
-        ],
-        "content-start": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": null
-            }
-        ],
-        "content": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": null
-            }
-        ],
-        "author": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": 630
-            },
-            {
-                "font": 2,
-                "height": 21,
-                "width": 630
-            }
-        ],
-        "author-start": []
+        "description": "configuration file for python scripts"
     },
     "test": {
-        "description": "configuration file for python scripts",
-        "skip": [],
-        "title-start": [],
-        "title": [],
-        "content-start": [],
-        "content": [],
-        "author": [],
-        "author-start": []
+        "description": "configuration file for python scripts"
     },
     "uat": {
-        "description": "configuration file for python scripts",
-        "skip": [],
-        "title-start": [],
-        "title": [],
-        "content-start": [],
-        "content": [],
-        "author": [],
-        "author-start": []
+        "description": "configuration file for python scripts"
     },
     "live": {
-        "description": "configuration file for python scripts",
-        "skip": [],
-        "title-start": [],
-        "title": [],
-        "content-start": [],
-        "content": [],
-        "author": [],
-        "author-start": []
+        "description": "configuration file for python scripts"
     }
 }

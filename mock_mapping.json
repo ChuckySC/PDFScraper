@@ -1,0 +1,63 @@
+{
+    "skip": [
+        {
+            "font": 2,
+            "height": 14,
+            "width": null,
+            "line": "removed"
+        },
+        {
+            "font": 2,
+            "height": 14,
+            "width": null,
+            "line": "removed"
+        }
+    ],
+    "title-start": [
+        {
+            "font": 1,
+            "height": 23,
+            "width": null,
+            "line": null
+        }
+    ],
+    "title": [
+        {
+            "font": 1,
+            "height": 23,
+            "width": null,
+            "line": null
+        }
+    ],
+    "content-start": [
+        {
+            "font": 0,
+            "height": 22,
+            "width": null,
+            "line": null
+        }
+    ],
+    "content": [
+        {
+            "font": 0,
+            "height": 22,
+            "width": null,
+            "line": null
+        }
+    ],
+    "author": [
+        {
+            "font": 0,
+            "height": 22,
+            "width": 630,
+            "line": null
+        },
+        {
+            "font": 2,
+            "height": 21,
+            "width": 630,
+            "line": null
+        }
+    ],
+    "author-start": []
+}

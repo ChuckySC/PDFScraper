@@ -3,14 +3,15 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 
-from functions.universal import allowed_file, load_xml
+from functions.universal import allowed_file, load_xml_as_str
+from functions.helper import get_structural_data
 
 
 UPLOAD_FOLDER = 'uploads/'
-ALLOWED_EXTENSIONS = {'xml'}
+ALLOWED_EXTENSIONS = ['xml']
 
-MAX_ROWS = 2
-PARAMETERS = ['font', 'height', 'width']
+MAX_ROWS = 3
+PARAMETERS = ['font', 'height', 'width', 'line']
 BASE = {
     "skip": [],
     "title-start": [],
@@ -59,39 +60,38 @@ def index():
 @app.route('/upload_file', methods=['GET','POST'])
 def upload_file():
     try:
+        file_name = request.args['name']
+
         if request.method == 'GET':
-            file_name = request.args['name']
-            file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-            data = file_data.split('\n')
+            file_data = load_xml_as_str(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
             return render_template(
                 'render_file.html', 
                 context={
                     'type': 'upload',
-                    'data': data, 
+                    'file_name': file_name,
+                    'data': file_data.split('\n'), 
                     'max_rows': MAX_ROWS
                 }
             )
-        else: # request.method == 'POST'
-            #TODO test and continue
-            for key in BASE.keys():
-                for i in range(MAX_ROWS):
-                    fhw = {}
-                    for parametar in PARAMETERS:
-                        name = f'{key}-{parametar}{i}'
-                        if name in request.form: 
-                            fhw[parametar] = request.form[name]
-                        else:
-                            fhw[parametar] = None
-                    BASE[key].append(fhw)
-                    
+
+        elif request.method == 'POST':
             return render_template(
                 'render_file.html', 
                 context={
                     'type': 'download',
-                    'data': data,
+                    'data': get_structural_data(
+                        BASE,
+                        PARAMETERS,
+                        MAX_ROWS,
+                        request.form,
+                        os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+                    ),
                     'max_rows': MAX_ROWS
                 }
             )
+
+        else:
+            raise
     except Exception as e:
         # logger for errors
         abort(500)  
