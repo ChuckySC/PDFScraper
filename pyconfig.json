@@ -1,95 +1,14 @@
 {
     "local": {
-        "description": "configuration file for python scripts",
-        "skip_line": [
-            {
-                "font": 2,
-                "height": 14,
-                "width": null
-            }
-        ],
-        "start_title": [
-            {
-                "font": 1,
-                "height": 23,
-                "width": null
-            }
-        ],
-        "title": [
-            {
-                "font": 1,
-                "height": 23,
-                "width": null
-            }
-        ],
-        "skip_title": [],
-        "start_body": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": null
-            }
-        ],
-        "body": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": null
-            }
-        ],
-        "skip_body": [],
-        "author": [
-            {
-                "font": 0,
-                "height": 22,
-                "width": 630
-            },
-            {
-                "font": 2,
-                "height": 21,
-                "width": 630
-            }
-        ],
-        "start_author": [],
-        "skip_author": []
+        "description": "configuration file for python scripts"
     },
     "test": {
-        "description": "configuration file for python scripts",
-        "skip_line": [],
-        "start_title": [],
-        "title": [],
-        "skip_title": [],
-        "start_body": [],
-        "body": [],
-        "skip_body": [],
-        "author": [],
-        "start_author": [],
-        "skip_author": []
+        "description": "configuration file for python scripts"
     },
     "uat": {
-        "description": "configuration file for python scripts",
-        "skip_line": [],
-        "start_title": [],
-        "title": [],
-        "skip_title": [],
-        "start_body": [],
-        "body": [],
-        "skip_body": [],
-        "author": [],
-        "start_author": [],
-        "skip_author": []
+        "description": "configuration file for python scripts"
     },
     "live": {
-        "description": "configuration file for python scripts",
-        "skip_line": [],
-        "start_title": [],
-        "title": [],
-        "skip_title": [],
-        "start_body": [],
-        "body": [],
-        "skip_body": [],
-        "author": [],
-        "start_author": [],
-        "skip_author": []
+        "description": "configuration file for python scripts"
     }
 }

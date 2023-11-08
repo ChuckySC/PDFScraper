@@ -3,11 +3,24 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 
-from functions.universal import allowed_file, load_xml
+from functions.universal import allowed_file, load_xml_as_str, load_xml
+from functions.helper import get_structural_data
 
 
 UPLOAD_FOLDER = 'uploads/'
-ALLOWED_EXTENSIONS = {'xml'}
+ALLOWED_EXTENSIONS = ['xml']
+
+MAX_ROWS = 3
+PARAMETERS = ['font', 'height', 'width', 'line']
+BASE = {
+    "skip": [],
+    "title-start": [],
+    "title": [],
+    "content-start": [],
+    "content": [],
+    "author": [],
+    "author-start": []
+}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -48,16 +61,35 @@ def index():
 def upload_file():
     try:
         file_name = request.args['name']
-        file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        data = file_data.split('\n')
-        return render_template('render_file.html', context={'data': data})
-        
-        # import xml.etree.ElementTree as ET
-        # tree = ET.parse(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        # root = tree.getroot()
-        # return render_template('render_file.html', context={'root': root})
-        
-        # TODO add template that will have one side as xml and on right side a form for adding paramethers for collecting data from xml and structuring them into json
+
+        if request.method == 'GET':
+            file_data = load_xml_as_str(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+            return render_template(
+                'render_file.html', 
+                context={
+                    'data': file_data.split('\n'), 
+                    'max_rows': MAX_ROWS
+                }
+            )
+
+        elif request.method == 'POST':
+            file_data = load_xml(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+            return render_template(
+                'uploaded_file.html', 
+                context={
+                    'data': file_data,
+                    'structural_data': get_structural_data(
+                        BASE,
+                        PARAMETERS,
+                        MAX_ROWS,
+                        request.form,
+                        os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+                    )
+                }
+            )
+
+        else:
+            raise
     except Exception as e:
         # logger for errors
         abort(500)  

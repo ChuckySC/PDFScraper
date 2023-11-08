@@ -1,5 +1,41 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
-
+    <div class="container p-3 mb-2">
+        <div class="row justify-content-start">
+            <div class="col-4">
+                <!--Left column-->
+                {% for page in context.data %}
+                    {% for txt_line in page.findall('text') %}
+                        {{ txt_line }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="col-8">
+                <!--Right column-->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author(s)</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Abstraction datetime stamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for abstract in context.structural_data %}
+                                <tr>
+                                    <th scope="row">{{ abstract['title'] }}</th>
+                                    <td>{{ abstract['author'] }}</td>
+                                    <td>{{ abstract['content'] }}</td>
+                                    <td>@{{ abstract['abstraction_datetime'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
