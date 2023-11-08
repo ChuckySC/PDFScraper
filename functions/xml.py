@@ -1,6 +1,31 @@
 from functions.universal import load_xml
 from models.abstract import Abstract
 
+ABS_EXCEPTIONS = [    
+        'background',
+        'backgroud',
+        '<background>',
+        'conclusion',
+        'objective',
+        'acknowledgements',
+        'introduction',
+        '(introduction)',
+        'intro',
+        'goals',
+        'importance',
+        'summary',
+        'methods',
+        'purpose',
+        '[purpose]',
+        'keywords',
+        '1. background and aim',
+        'aim',
+        'abstract background',
+        'abstract',
+        'rational',
+        'significance'
+    ]
+
 def clean(line: str) -> str:
     return line.replace('\u2800', '').strip()
     
@@ -29,6 +54,14 @@ def is_true(line: str, font: int, height: int, width: int, mapping: list) -> boo
                         return True
 
     return False
+
+def is_exception(line: str, exceptions: list) -> bool:
+    for exception in exceptions:
+        if line.startswith(exception):
+            return True
+    
+    return False
+    
 
 def xml_extract(mapping: dict, file_path: str) -> list:
     abstracts = []
@@ -70,7 +103,8 @@ def xml_extract(mapping: dict, file_path: str) -> list:
                 continue
             
             # NEW ABS STARTS
-            if is_true(txt_line, font, height, width, mapping['content']) and is_abs_started:
+            if (is_true(txt_line, font, height, width, mapping['content']) and is_abs_started) or \
+                is_exception(txt_line, ABS_EXCEPTIONS):
                 # is_title_started = False
                 is_author_started = False
                 
