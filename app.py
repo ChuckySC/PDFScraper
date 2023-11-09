@@ -84,7 +84,7 @@ def upload_file():
             raise
     except Exception as e:
         # logger for errors
-        abort(500)  
+        abort(500)
 
 @app.route('/about')
 def about():
