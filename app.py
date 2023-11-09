@@ -49,10 +49,11 @@ def index():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
                 return redirect(url_for('upload_file', name=file_name))
 
-        context = {
-            'date': datetime.utcnow().date()
-        }
-        return render_template('index.html', context=context)
+        # context = {
+        #     'date': datetime.utcnow().date()
+        # }
+        # return render_template('index.html', context=context)
+        return render_template('index.html')
     except Exception as e:
         # logger for errors
         abort(500)
@@ -96,10 +97,11 @@ def upload_file():
 @app.route('/about')
 def about():
     try:
-        context = {
-            'date': datetime.utcnow().date()
-        }
-        return render_template('about.html', context=context)
+        # context = {
+        #     'date': datetime.utcnow().date()
+        # }
+        # return render_template('about.html', context=context)
+        return render_template('about.html')
     except Exception as e:
         # logger for errors
         abort(500)
