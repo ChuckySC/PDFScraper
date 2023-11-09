@@ -5,25 +5,14 @@ import os
 
 from functions.universal import allowed_file, load_xml_as_str, load_xml
 from functions.helper import get_structural_data
+from modules.configuration import Configuration
 
+configuration = Configuration()
 
-UPLOAD_FOLDER = 'uploads/'
-ALLOWED_EXTENSIONS = ['xml']
-
-MAX_ROWS = 3
-PARAMETERS = ['font', 'height', 'width', 'line']
-BASE = {
-    "skip": [],
-    "title-start": [],
-    "title": [],
-    "content-start": [],
-    "content": [],
-    "author": [],
-    "author-start": []
-}
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = configuration.secret_key
+app.config['UPLOAD_FOLDER'] = configuration.upload_folder
 
 @app.context_processor
 def inject_now():
@@ -44,10 +33,13 @@ def index():
                 flash('No selected file')
                 return redirect(request.url)
 
-            if file and allowed_file(file.filename, ALLOWED_EXTENSIONS):
+            if file and allowed_file(file.filename, configuration.allowed_extensions):
                 file_name = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
                 return redirect(url_for('upload_file', name=file_name))
+            else:
+                flash(f'Type of browesed file "{file.filename}" is not allowed.')
+                return redirect(request.url)
 
         # context = {
         #     'date': datetime.utcnow().date()
@@ -69,7 +61,7 @@ def upload_file():
                 'render_file.html', 
                 context={
                     'data': file_data.split('\n'), 
-                    'max_rows': MAX_ROWS
+                    'max_rows': configuration.max_rows
                 }
             )
 
@@ -79,9 +71,9 @@ def upload_file():
                 context={
                     'data': file_data,
                     'structural_data': get_structural_data(
-                        BASE,
-                        PARAMETERS,
-                        MAX_ROWS,
+                        configuration.mapping_base,
+                        configuration.parameters,
+                        configuration.max_rows,
                         request.form,
                         os.path.join(app.config['UPLOAD_FOLDER'], file_name)
                     )
