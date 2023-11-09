@@ -47,7 +47,8 @@ def extract_from(line):
 
 def is_true(line: str, font: int, height: int, width: int, mapping: list) -> bool:
     if not bool(mapping):
-        # returns False if mapping == []
+        # returns False if mapping length is 0
+        # i.e. equivalent to -> if len(mapping) == 0
         return False
 
     for el in mapping:
