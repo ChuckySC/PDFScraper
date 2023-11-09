@@ -47,7 +47,7 @@ def extract_from(line):
 
 def is_true(line: str, font: int, height: int, width: int, mapping: list) -> bool:
     if not bool(mapping):
-        # returns False if mapping length is 0
+        # Returns False if mapping length is 0
         # i.e. equivalent to -> if len(mapping) == 0
         return False
 
@@ -123,8 +123,9 @@ def xml_extract(mapping: dict, file_path: str) -> list:
                 is_author_started = False
                 
                 if abs:
+                    # Add previous abstract
                     abs.content = abs_content
-                    abstracts.append(abs.get()) # previous abstract
+                    abstracts.append(abs.get())
                     
                 # Call class constructor    
                 abs = Abstract(
@@ -146,7 +147,7 @@ def xml_extract(mapping: dict, file_path: str) -> list:
             if is_abs_started:
                 abs_content = f"{abs_content} {txt_line}".strip()
 
-    # add last abstract
+    # Add last abstract
     if abs:
         abs.content = abs_content
         abstracts.append(abs.get())   

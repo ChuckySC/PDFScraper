@@ -14,8 +14,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">Title</th>
-                                <th scope="col">Author(s)</th>
                                 <th scope="col">Content</th>
+                                <th scope="col">Author(s)</th>
                                 <th scope="col">Abstraction datetime stamp</th>
                             </tr>
                         </thead>
@@ -23,8 +23,8 @@
                             {% for abstract in context.structural_data %}
                                 <tr>
                                     <th scope="row">{{ abstract['title'] }}</th>
-                                    <td>{{ abstract['author'] }}</td>
                                     <td>{{ abstract['content'] }}</td>
+                                    <td>{{ abstract['author'] }}</td>
                                     <td>{{ abstract['abstraction_datetime'] }}</td>
                                 </tr>
                             {% endfor %}
