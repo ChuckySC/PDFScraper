@@ -101,7 +101,7 @@ def xml_extract(mapping: dict, file_path: str) -> list:
             ):
                 if abs_title == '':
                     abs_page = page_num
-                abs_title = f'{abs_title}{txt_line}'.strip() if abs_title != ''  else txt_line.strip()
+                abs_title = f'{abs_title} {txt_line}'.strip() if abs_title != ''  else txt_line.strip()
                 is_author_started = True
                 continue
             
