@@ -18,6 +18,11 @@ def get_mapping(
                         fhw[parametar] = None
                 else:
                     fhw[parametar] = None
+
+            is_empty = all([True if value is None else False for value in fhw.values()])
+            if is_empty:
+                continue
+
             base[key].append(fhw)
     return base
 
