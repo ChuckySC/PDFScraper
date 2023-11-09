@@ -83,6 +83,9 @@ def xml_extract(mapping: dict, file_path: str) -> list:
         for line in page.findall('text'):
             txt_line, font, height, width = extract_from(line)
             
+            if is_exception(txt_line.lower(), ABS_EXCEPTIONS):
+                is_abs_started = True
+            
             if is_true(txt_line, font, height, width, mapping['skip']):
                 continue
             
@@ -95,14 +98,13 @@ def xml_extract(mapping: dict, file_path: str) -> list:
                     abs_page = page_num
                 abs_title = f'{abs_title}{txt_line}'.strip() if abs_title != ''  else txt_line.strip()
                 is_author_started = True
-                is_abs_started = True
                 continue
             
             # ABS AUTHOR(S)
             if (
                 is_true(txt_line, font, height, width, mapping['author']) 
                 or is_true(txt_line, font, height, width, mapping['author-start'])
-            ) and is_author_started:
+            ) and is_author_started and not is_abs_started:
                 abs_author = f'{abs_author} {txt_line}'.strip() if abs_author != ''  else txt_line.strip()
                 # is_title_started = False
                 continue
@@ -111,7 +113,6 @@ def xml_extract(mapping: dict, file_path: str) -> list:
             if (
                 is_true(txt_line, font, height, width, mapping['content'])
                 or is_true(txt_line, font, height, width, mapping['content-start'])
-                or is_exception(txt_line.lower(), ABS_EXCEPTIONS)
             ) and is_abs_started:
                 # is_title_started = False
                 is_author_started = False
