@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 
-from functions.universal import allowed_file, load_xml_as_str, load_xml
+from functions.universal import allowed_file, load_xml_as_str
 from functions.helper import get_structural_data
 from modules.configuration import Configuration
 
@@ -84,7 +84,7 @@ def upload_file():
             raise
     except Exception as e:
         # logger for errors
-        abort(500)  
+        abort(500)
 
 @app.route('/about')
 def about():

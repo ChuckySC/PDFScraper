@@ -1,6 +1,18 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
+    <div class="dropdown container-fluid p-3 mb-2">
+        <button class="btn btn-success dropdown-toggle" style="float: right;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Download Structured Data
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">JSON</a>
+            <a class="dropdown-item" href="#">EXCEL</a>
+            <a class="dropdown-item" href="#">CSV</a>
+        </div>
+    </div>
+    <!--<input type="submit" class="btn btn-success" style="float: right;" value="Download Structured Data" onclick="loading();"/>-->
+
     <div class="container-fluid p-3 mb-2">
         <div class="row justify-content-start">
             <div class="col-4">
