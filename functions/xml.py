@@ -118,7 +118,7 @@ def xml_extract(mapping: dict, file_path: str) -> list:
             if (
                 is_true(txt_line, font, height, width, mapping['content'])
                 or is_true(txt_line, font, height, width, mapping['content-start'])
-            ) and is_abs_started:
+            ) and is_abs_started and is_author_started:
                 # is_title_started = False
                 is_author_started = False
                 
