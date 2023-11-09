@@ -1,14 +1,70 @@
 {
     "local": {
-        "description": "configuration file for python scripts"
+        "description": "configuration file for python scripts",
+        "secret_key": "192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf",
+        "upload_folder": "uploads/",
+        "allowed_extensions": ["xml"],
+        "max_rows": 3,
+        "parameters": ["font", "height", "width", "line"],
+        "mapping_base": {
+            "skip": [],
+            "title-start": [],
+            "title": [],
+            "content-start": [],
+            "content": [],
+            "author": [],
+            "author-start": []
+        }
     },
     "test": {
-        "description": "configuration file for python scripts"
+        "description": "configuration file for python scripts",
+        "secret_key": "192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf",
+        "upload_folder": "uploads/",
+        "allowed_extensions": ["xml"],
+        "max_rows": 3,
+        "parameters": ["font", "height", "width", "line"],
+        "mapping_base": {
+            "skip": [],
+            "title-start": [],
+            "title": [],
+            "content-start": [],
+            "content": [],
+            "author": [],
+            "author-start": []
+        }
     },
     "uat": {
-        "description": "configuration file for python scripts"
+        "description": "configuration file for python scripts",
+        "secret_key": "192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf",
+        "upload_folder": "uploads/",
+        "allowed_extensions": ["xml"],
+        "max_rows": 3,
+        "parameters": ["font", "height", "width", "line"],
+        "mapping_base": {
+            "skip": [],
+            "title-start": [],
+            "title": [],
+            "content-start": [],
+            "content": [],
+            "author": [],
+            "author-start": []
+        }
     },
     "live": {
-        "description": "configuration file for python scripts"
+        "description": "configuration file for python scripts",
+        "secret_key": "192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf",
+        "upload_folder": "uploads/",
+        "allowed_extensions": ["xml"],
+        "max_rows": 3,
+        "parameters": ["font", "height", "width", "line"],
+        "mapping_base": {
+            "skip": [],
+            "title-start": [],
+            "title": [],
+            "content-start": [],
+            "content": [],
+            "author": [],
+            "author-start": []
+        }
     }
 }

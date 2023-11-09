@@ -16,6 +16,15 @@
         <div id="loading"></div>
         <div id="content" class="main-content">
             {% block content %} {% endblock %}
+
+            {% for mesg in get_flashed_messages() %}
+                <figure class="text-center" style="color: crimson;">
+                    <blockquote class="blockquote">
+                        <p>{{ mesg }}</p>
+                    </blockquote>
+                </figure>
+            {% endfor %}
+            
         </div>
 
         {% include "components/layouts/footer.html" %}

@@ -14,6 +14,14 @@ class Configuration:
 
     CONFIGTOUSE = CONFIG_LOCAL_STR
     
+    description = None
+    secret_key = None
+    upload_folder = None
+    allowed_extensions = None
+    max_rows = None
+    parameters = None
+    mapping_base = None
+    
     logger = None
     
     def __init__(self, id:int = None):
@@ -31,3 +39,9 @@ class Configuration:
     
     def loaddata(self, environment):
         self.description = environment['description']
+        self.secret_key = environment['secret_key']
+        self.upload_folder = environment['upload_folder']
+        self.allowed_extensions = environment['allowed_extensions']
+        self.max_rows = environment['max_rows']
+        self.parameters = environment['parameters']
+        self.mapping_base = environment['mapping_base']
