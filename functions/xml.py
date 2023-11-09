@@ -46,6 +46,10 @@ def extract_from(line):
     return clean(txt_line), font, height, width
 
 def is_true(line: str, font: int, height: int, width: int, mapping: list) -> bool:
+    if not bool(mapping):
+        # returns False if mapping == []
+        return False
+
     for el in mapping:
         if bool(el['font'] is None or el['font'] == font) and \
             bool(el['height'] is None or el['height'] == height) and \
