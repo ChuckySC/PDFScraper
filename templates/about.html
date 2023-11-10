@@ -3,17 +3,19 @@
 {% block content %}
     <div>
         <p class="text-justify p-3 mb-2">
-            <strong>XML Scraper is a Flask web application written in Python.</strong>
-            Application renders uploaded XML file and with client parameters renders data in structual way which then can be downloaded as json file.
+            <strong>XML Scraper is a Flask web application written in Python.</strong></br>
+            Application renders uploaded XML file and with client parameters renders data in structual way which then can be downloaded as json, excel or csv file.
         </p>
 
-        <p class="text-justify p-3 mb-2 text-secondary">
-            We recomend poppler for converting pdf into xml. Command: pdftohtml -xml -i file.pdf file.xml</br></br>
-            Option -xml forms xml page</br>
-            Option -i ignores the images</br></br>
-            Additional options:</br>
-            -f xxx from what page you want to start</br>
-            -l xxx what page you want it to be the last one
+        <p class="text-justify p-3 mb-0 text-secondary">
+            We recomend <strong>poppler</strong> for converting pdf into xml. 
+            Command: <i>pdftohtml -xml -i file.pdf file.xml</i>.
         </p>
+        <div class="container">
+            <div class="col-md-6 text-secondary"><i>-xml</i> forms xml page</div>
+            <div class="col-md-6 text-secondary"><i>-i</i> ignores the images</div>
+            <div class="col-md-6 text-secondary"><i>-f xxx</i> from what page you want to start</div>
+            <div class="col-md-6 text-secondary"><i>-l xxx</i> what page you want it to be the last one</div>
+        </div>
     </div>
 {% endblock %}
