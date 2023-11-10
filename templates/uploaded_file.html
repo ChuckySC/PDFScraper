@@ -2,13 +2,23 @@
 
 {% block content %}
     <div class="dropdown container-fluid p-3 mb-2">
-        <button class="btn btn-success dropdown-toggle" style="float: right;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button 
+            class="btn btn-success dropdown-toggle" 
+            style="float: right;" 
+            type="button" 
+            id="dropdownMenuButton" 
+            data-bs-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+        >
             Download Structured Data
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">JSON</a>
-            <a class="dropdown-item" href="#">EXCEL</a>
-            <a class="dropdown-item" href="#">CSV</a>
+            <form id="download-form" method="POST" enctype="multipart/form-data">
+                <a id="download-json" class="dropdown-item" href="#">JSON</a>
+                <a id="download-excel" class="dropdown-item" href="#">EXCEL</a>
+                <a id="download-csv" class="dropdown-item" href="#">CSV</a>
+            </form>
         </div>
     </div>
     <!--<input type="submit" class="btn btn-success" style="float: right;" value="Download Structured Data" onclick="loading();"/>-->
@@ -46,4 +56,23 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            /* --------------------- */
+            /* ----- LISTENERS ----- */
+            /* --------------------- */
+            $('a#download-json').bind('click', function() {
+                $('form#download-form').attr('action', 'download/json').submit();
+            });
+
+            $('a#download-excel').bind('click', function() {
+                $('form#download-form').attr('action', 'download/excel').submit();
+            });
+
+            $('a#download-csv').bind('click', function() {
+                $('form#download-form').attr('action', 'download/csv').submit();
+            });
+        });
+
+    </script>
 {% endblock %}

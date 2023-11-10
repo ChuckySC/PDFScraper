@@ -85,6 +85,11 @@ def upload_file():
     except Exception as e:
         # logger for errors
         abort(500)
+# http://127.0.0.1:5000/download/json
+@app.route('/download/<type>', methods=['GET','POST'])
+def download(type):
+    a=1
+    pass
 
 @app.route('/about')
 def about():
