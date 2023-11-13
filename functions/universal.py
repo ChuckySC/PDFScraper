@@ -28,7 +28,7 @@ def load_json(file_name: str) -> json:
 
 def save_json(data: json, file_name: str):
     '''Save json data into json file'''
-    with open(file_name, 'w') as output:
+    with open(file_name, 'w', encoding='utf8') as output:
         json.dump(data, output)
         
 def remove_superscripts(text: str) -> str:

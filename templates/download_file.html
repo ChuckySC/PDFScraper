@@ -1,6 +1,8 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
+    <input type="hidden" name="file-name" value="{{ context.file_name }}"/>
+
     <div class="dropdown container-fluid p-3 mb-2">
         <button 
             class="btn btn-success dropdown-toggle" 
@@ -14,23 +16,22 @@
             Download Structured Data
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <form id="download-form" method="POST" enctype="multipart/form-data">
-                <a id="download-json" class="dropdown-item" href="#">JSON</a>
-                <a id="download-excel" class="dropdown-item" href="#">EXCEL</a>
-                <a id="download-csv" class="dropdown-item" href="#">CSV</a>
-            </form>
+            <a href="/download/{{ context.file_name }}/json" target="_blank">
+                <button class="download-btn btn btn-light">JSON</button>
+            </a>
+            <!--<a href="/download/csv" target="_blank">
+                <button class="download-btn btn btn-light">CSV</button>
+            </a>
+            <a href="/download/excel" target="_blank">
+                <button class="download-btn btn btn-light">EXCEL</button>
+            </a>-->
         </div>
     </div>
-    <!--<input type="submit" class="btn btn-success" style="float: right;" value="Download Structured Data" onclick="loading();"/>-->
 
     <div class="container-fluid p-3 mb-2">
         <div class="row justify-content-start">
-            <div class="col-4">
-                <!--Left column-->
-                {{ context.data | safe }}
-            </div>
             <div class="col-8">
-                <!--Right column-->
+                <!--Left column-->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -54,25 +55,10 @@
                     </table>
                 </div>
             </div>
+            <div class="col-4">
+                <!--Right column-->
+                {{ context.data | safe }}
+            </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            /* --------------------- */
-            /* ----- LISTENERS ----- */
-            /* --------------------- */
-            $('a#download-json').bind('click', function() {
-                $('form#download-form').attr('action', 'download/json').submit();
-            });
-
-            $('a#download-excel').bind('click', function() {
-                $('form#download-form').attr('action', 'download/excel').submit();
-            });
-
-            $('a#download-csv').bind('click', function() {
-                $('form#download-form').attr('action', 'download/csv').submit();
-            });
-        });
-
-    </script>
 {% endblock %}
