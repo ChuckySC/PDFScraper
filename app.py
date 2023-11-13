@@ -1,7 +1,7 @@
 from flask import Flask, render_template, abort, flash, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from datetime import datetime
-#import json
+import pandas as pd
 import os
 
 from functions.universal import allowed_file, load_xml_as_str, save_json
@@ -114,13 +114,42 @@ def render_file():
 @app.route('/download/<file_name>/<type>', methods=['GET','POST'])
 def download(file_name, type):
     try:
-        name = str(file_name).replace('.xml', '.json')
+        name_json = str(file_name).replace('.xml', '.json')
+        path_json = os.path.join(app.config['UPLOAD_FOLDER'], name_json)
+        
         if type == 'json':
             return send_from_directory(
                 directory=app.config['UPLOAD_FOLDER'], 
-                path=name,
+                path=name_json,
                 as_attachment=True
             )
+
+        elif type == 'csv':
+            name_csv = str(file_name).replace('.xml', '.csv')
+            path_csv = os.path.join(app.config['UPLOAD_FOLDER'], name_csv)
+
+            pd.read_json(path_json).to_csv(path_csv)
+
+            return send_from_directory(
+                directory=app.config['UPLOAD_FOLDER'], 
+                path=name_csv,
+                as_attachment=True
+            )
+
+        elif type == 'excel':
+            name_xlsx = str(file_name).replace('.xml', '.xlsx')
+            path_xlsx = os.path.join(app.config['UPLOAD_FOLDER'], name_xlsx)
+
+            pd.read_json(path_json).to_excel(path_xlsx)
+
+            return send_from_directory(
+                directory=app.config['UPLOAD_FOLDER'], 
+                path=name_xlsx,
+                as_attachment=True
+            )
+
+        else:
+            raise
     except Exception as e:
         # logger for errors
         abort(500)
