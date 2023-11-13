@@ -53,4 +53,4 @@ class Abstract():
     
     def get_abstraction_datetime(self):
         '''Return abstraction datetime stamp'''
-        return datetime.today()
+        return datetime.strftime(datetime.today(), '%a %d %b %Y, %I:%M%p')

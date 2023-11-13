@@ -36,7 +36,11 @@ class Configuration:
         except Exception as e:
             self.logger.exception(e)
             raise
-    
+
+    @staticmethod
+    def getenvironment():
+        return Configuration.CONFIGTOUSE
+
     def loaddata(self, environment):
         self.description = environment['description']
         self.secret_key = environment['secret_key']

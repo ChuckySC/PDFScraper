@@ -1,26 +1,37 @@
 {% extends 'components/layouts/base.html' %}
 
 {% block content %}
+    <input type="hidden" name="file-name" value="{{ context.file_name }}"/>
+
     <div class="dropdown container-fluid p-3 mb-2">
-        <button class="btn btn-success dropdown-toggle" style="float: right;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button 
+            class="btn btn-success dropdown-toggle" 
+            style="float: right;" 
+            type="button" 
+            id="dropdownMenuButton" 
+            data-bs-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+        >
             Download Structured Data
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">JSON</a>
-            <a class="dropdown-item" href="#">EXCEL</a>
-            <a class="dropdown-item" href="#">CSV</a>
+            <a href="/download/{{ context.file_name }}/json" target="_blank">
+                <button class="download-btn btn btn-light">JSON</button>
+            </a>
+            <a href="/download/{{ context.file_name }}/csv" target="_blank">
+                <button class="download-btn btn btn-light">CSV</button>
+            </a>
+            <a href="/download/{{ context.file_name }}/excel" target="_blank">
+                <button class="download-btn btn btn-light">EXCEL</button>
+            </a>
         </div>
     </div>
-    <!--<input type="submit" class="btn btn-success" style="float: right;" value="Download Structured Data" onclick="loading();"/>-->
 
     <div class="container-fluid p-3 mb-2">
         <div class="row justify-content-start">
-            <div class="col-4">
+            <div class="col-12">
                 <!--Left column-->
-                {{ context.data | safe }}
-            </div>
-            <div class="col-8">
-                <!--Right column-->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -28,7 +39,7 @@
                                 <th scope="col">Title</th>
                                 <th scope="col">Content</th>
                                 <th scope="col">Author(s)</th>
-                                <th scope="col">Abstraction datetime stamp</th>
+                                <th scope="col">Datetime</th>
                             </tr>
                         </thead>
                         <tbody>
