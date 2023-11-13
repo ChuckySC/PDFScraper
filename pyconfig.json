@@ -5,7 +5,12 @@
         "upload_folder": "uploads/",
         "allowed_extensions": ["xml"],
         "max_rows": 3,
-        "parameters": ["font", "height", "width", "line"],
+        "parameters": [
+            "select-width", "width",
+            "select-height", "height",
+            "select-font", "font",
+            "select-line", "line"
+        ],
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -22,7 +27,12 @@
         "upload_folder": "uploads/",
         "allowed_extensions": ["xml"],
         "max_rows": 3,
-        "parameters": ["font", "height", "width", "line"],
+        "parameters": [
+            "select-width", "width",
+            "select-height", "height",
+            "select-font", "font",
+            "select-line", "line"
+        ],
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -39,7 +49,12 @@
         "upload_folder": "uploads/",
         "allowed_extensions": ["xml"],
         "max_rows": 3,
-        "parameters": ["font", "height", "width", "line"],
+        "parameters": [
+            "select-width", "width",
+            "select-height", "height",
+            "select-font", "font",
+            "select-line", "line"
+        ],
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -56,7 +71,12 @@
         "upload_folder": "uploads/",
         "allowed_extensions": ["xml"],
         "max_rows": 3,
-        "parameters": ["font", "height", "width", "line"],
+        "parameters": [
+            "select-width", "width",
+            "select-height", "height",
+            "select-font", "font",
+            "select-line", "line"
+        ],
         "mapping_base": {
             "skip": [],
             "title-start": [],

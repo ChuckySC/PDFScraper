@@ -10,7 +10,8 @@ def get_mapping(
         for i in range(max_rows):
             fhw = {}
             for parametar in parameters:
-                name = f'{key}-{parametar}-{i}'
+                name = f'{key}-{parametar}-{i}' if 'select' not in parametar \
+                                                else f'{key}-{parametar.replace("select-","")}-{i}-select'
                 if name in request_form:
                     try:
                         fhw[parametar] = int(request_form[name])
