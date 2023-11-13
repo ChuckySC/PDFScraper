@@ -30,7 +30,7 @@
 
     <div class="container-fluid p-3 mb-2">
         <div class="row justify-content-start">
-            <div class="col-8">
+            <div class="col-12">
                 <!--Left column-->
                 <div class="table-responsive">
                     <table class="table">
@@ -39,7 +39,7 @@
                                 <th scope="col">Title</th>
                                 <th scope="col">Content</th>
                                 <th scope="col">Author(s)</th>
-                                <th scope="col">Abstraction datetime stamp</th>
+                                <th scope="col">Datetime</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,10 +54,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="col-4">
-                <!--Right column-->
-                {{ context.data | safe }}
             </div>
         </div>
     </div>
