@@ -1,9 +1,9 @@
 from functions.xml import xml_extract
 
 def get_mapping(
-    base: dict, 
-    parameters: list, 
-    max_rows: int, 
+    base: dict,
+    parameters: list,
+    max_rows: int,
     request_form
 ) -> dict:
     for key in base.keys():
@@ -14,7 +14,10 @@ def get_mapping(
                                                 else f'{key}-{parametar.replace("select-","")}-{i}-select'
                 if name in request_form:
                     try:
-                        fhw[parametar] = int(request_form[name])
+                        if parametar == 'line' and str(request_form[name]) != '':
+                            fhw[parametar] = str(request_form[name])
+                        else:
+                            fhw[parametar] = int(request_form[name])
                     except:
                         fhw[parametar] = None
                 else:
@@ -29,10 +32,11 @@ def get_mapping(
 
 def get_structural_data(
     base: dict, 
+    filters: dict,
     parameters: list, 
     max_rows: int, 
     request_form,
     file_path: str
 ) -> list:
     mapping = get_mapping(base, parameters, max_rows, request_form)
-    return xml_extract(mapping, file_path)
+    return xml_extract(mapping, filters, file_path)
