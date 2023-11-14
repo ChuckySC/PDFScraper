@@ -77,13 +77,15 @@ def render_file():
                 'render_file.html', 
                 context={
                     'data': file_data.split('\n'), 
-                    'max_rows': configuration.max_rows
+                    'max_rows': configuration.max_rows,
+                    'filters': configuration.filters
                 }
             )
 
         elif request.method == 'POST':
             structural_data = get_structural_data(
                 configuration.mapping_base,
+                configuration.filters,
                 configuration.parameters,
                 configuration.max_rows,
                 request.form,

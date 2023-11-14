@@ -11,6 +11,13 @@
             "select-font", "font",
             "select-line", "line"
         ],
+        "filters": {
+            "equal_to": 0,
+            "greater_than": 1,
+            "less_than": 2,
+            "starts_with": 3,
+            "ends_with": 4
+        },
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -33,6 +40,13 @@
             "select-font", "font",
             "select-line", "line"
         ],
+        "filters": {
+            "equal_to": 0,
+            "greater_than": 1,
+            "less_than": 2,
+            "starts_with": 3,
+            "ends_with": 4
+        },
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -55,6 +69,13 @@
             "select-font", "font",
             "select-line", "line"
         ],
+        "filters": {
+            "equal_to": 0,
+            "greater_than": 1,
+            "less_than": 2,
+            "starts_with": 3,
+            "ends_with": 4
+        },
         "mapping_base": {
             "skip": [],
             "title-start": [],
@@ -77,6 +98,13 @@
             "select-font", "font",
             "select-line", "line"
         ],
+        "filters": {
+            "equal_to": 0,
+            "greater_than": 1,
+            "less_than": 2,
+            "starts_with": 3,
+            "ends_with": 4
+        },
         "mapping_base": {
             "skip": [],
             "title-start": [],
